@@ -1,0 +1,21 @@
+from random import randint
+from random import choices
+from random import shuffle
+import string
+
+def passwordgen(n):
+    if n<8:
+        n=8
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    digits = string.digits
+    other = '.,;:-_!$%&()='
+    pwlst = choices(lower, k=n-3)
+    pwlst += [upper[randint(0, len(upper)-1)]]
+    pwlst += [digits[randint(0, len(digits)-1)]]
+    pwlst += [other[randint(0, len(other)-1)]]
+    shuffle(pwlst)
+    return ''.join(pwlst)
+
+for _ in range(3):
+    print(passwordgen(10))
